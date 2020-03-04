@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet, ImageBackground } from 'react-native'
 import { Button } from 'react-native-elements';
 import { globalStyles } from '../styles/global'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -17,7 +17,7 @@ export default Home = ({ navigation }) => {
 
 
     return (
-        <View style={globalStyles.container}>
+        <ImageBackground source={require('../assets/game_bg.png')} style={globalStyles.container}>
             <FlatList
                 data={reviews}
                 renderItem={({ item }) => (
@@ -28,7 +28,7 @@ export default Home = ({ navigation }) => {
                     </TouchableOpacity>
                 )}
             />
-        </View>
+        </ImageBackground>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native'
 import { globalStyles, images } from '../styles/global'
 import { Button } from 'react-native-elements';
 import Card from '../shared/card'
@@ -9,7 +9,7 @@ const ReviewDetails = ({navigation}) => {
     const rating = navigation.getParam('rating')
     
     return (
-        <View style={globalStyles.container}>
+        <ImageBackground source={require('../assets/game_bg.png')} style={globalStyles.container}>
             <Card>
                 <Text>{navigation.getParam('title')}</Text>
                 <Text>{navigation.getParam('body')}</Text>
@@ -18,7 +18,7 @@ const ReviewDetails = ({navigation}) => {
                     <Image source={images.ratings[rating]} />
                 </View>
             </Card>
-        </View>
+        </ImageBackground>
     )
 }
 
