@@ -1,20 +1,28 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements';
 import { globalStyles } from '../styles/global'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Home = ({navigation}) => {
+export default Home = ({ navigation }) => {
 
-    const pressHandler = () =>{
-        // navigation.navigate('ReviewDetails')
-        navigation.push('ReviewDetails')
-    }
+    const [reviews, setReviews] = useState([
+        { title: 'Zelda, Breath of fresh air', rating: 5, body: 'lorem ipsum', key: '1' },
+        { title: 'Gotta, Catch them all (again)', rating: 3, body: 'lorem ipsum', key: '1' },
+        { title: 'Not so "Final" Fantasy', rating: 2, body: 'lorem ipsum', key: '1' },
+    ]);
 
 
     return (
         <View style={globalStyles.container}>
-            <Text style={globalStyles.titleText}>Home screen</Text>
-            <Button type='outline' title="Go reviews"  onPress={pressHandler}/>
+            <FlatList
+                data={reviews}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item)}>
+                        <Text style={globalStyles.titleText}> {item.title}</Text>
+                    </TouchableOpacity>
+                )}
+            />
         </View>
     )
 }
@@ -24,4 +32,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Home
+

@@ -5,14 +5,12 @@ import { Button } from 'react-native-elements';
 
 const ReviewDetails = ({navigation}) => {
 
-    const pressHandler = () =>{
-        navigation.navigate('Home')
-    }
-
+    
     return (
         <View style={globalStyles.container}>
-            <Text>ReviewDetails screen</Text>
-            <Button type='outline' title="Go Home"  onPress={pressHandler}/>
+            <Text>{navigation.getParam('title')}</Text>
+            <Text>{navigation.getParam('body')}</Text>
+            <Text>{navigation.getParam('rating')}</Text>
         </View>
     )
 }
