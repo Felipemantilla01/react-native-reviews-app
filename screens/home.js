@@ -4,6 +4,9 @@ import { Button } from 'react-native-elements';
 import { globalStyles } from '../styles/global'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+
+import Card from '../shared/card'
+
 export default Home = ({ navigation }) => {
 
     const [reviews, setReviews] = useState([
@@ -19,7 +22,9 @@ export default Home = ({ navigation }) => {
                 data={reviews}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item)}>
-                        <Text style={globalStyles.titleText}> {item.title}</Text>
+                        <Card>
+                            <Text style={globalStyles.titleText}> {item.title}</Text>
+                        </Card>
                     </TouchableOpacity>
                 )}
             />
