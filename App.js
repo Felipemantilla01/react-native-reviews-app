@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import * as Font from 'expo-font'
 import Home from './screens/home'
 import { AppLoading } from 'expo'
-import Navigator from './routes/homeStack'
+import Navigator from './routes/drawer'
 
 const getFonts = () =>Font.loadAsync({
     'oswald-regular': require('./assets/fonts/Oswald-Regular.ttf'),
