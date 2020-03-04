@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet, ImageBackground, Modal } from 'react-native'
+import { View, Text, FlatList, StyleSheet, ImageBackground, Modal, Keyboard } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { globalStyles } from '../styles/global'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import ReviewForm from './reviewForm'
 
 import Card from '../shared/card'
 
@@ -17,20 +17,30 @@ export default Home = ({ navigation }) => {
         { title: 'Not so "Final" Fantasy', rating: 2, body: 'lorem ipsum', key: '3' },
     ]);
 
+    const addReview = (review) =>{
+        review.key = Math.random().toString();
+        setReviews((currentReviews)=>{
+            return [review, ...currentReviews]
+        })
+        setModalOpen(false)
+    }
+
 
     return (
         <ImageBackground source={require('../assets/game_bg.png')} style={globalStyles.container}>
 
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={styles.modalContent}>
+                {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+                <ImageBackground source={require('../assets/game_bg.png')} style={styles.modalContent}>
                     <MaterialIcons style={{...styles.modalToggle, ...styles.modalClose}}
                         name='close'
                         size={24}
                         onPress={() => setModalOpen(false)}
                     />
- 
-                    <Text> Hello from the other side </Text>
-                </View>
+                    <ReviewForm addReview={addReview} />
+                    
+                </ImageBackground>
+                {/* </TouchableWithoutFeedback> */}
             </Modal>
 
             <MaterialIcons style={styles.modalToggle}
@@ -51,7 +61,7 @@ export default Home = ({ navigation }) => {
             />
         </ImageBackground>
     )
-}
+} 
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -60,12 +70,10 @@ const styles = StyleSheet.create({
     modalToggle:{
         marginBottom:10,
         borderWidth:1,
-        borderColor:'#f2f2f2',
+        borderColor:'#000',
         padding:10,
-        borderRadius:10,
+        borderRadius:23,
         alignSelf:'center'
-         
-
     },
     modalClose:{
         marginTop:20,
