@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text} from 'react-native'
 import {Button, Input} from 'react-native-elements'
 import React from 'react'
 import { globalStyles } from '../styles/global'
@@ -43,8 +43,8 @@ const reviewForm = ({addReview}) => {
                             onChangeText={formikProps.handleChange('title')}
                             value={formikProps.values.title}
                             label='Review title'
-                            
                         />
+                        <Text style={globalStyles.errorText}> {formikProps.touched.title && formikProps.errors.title} </Text>
 
                         <Input
                             style={globalStyles.input}
@@ -53,6 +53,7 @@ const reviewForm = ({addReview}) => {
                             value={formikProps.values.body}
                             label='Review body'
                         />
+                        <Text style={globalStyles.errorText}> {formikProps.touched.body && formikProps.errors.body} </Text>
 
                         <Input
                             style={globalStyles.input}
@@ -62,6 +63,7 @@ const reviewForm = ({addReview}) => {
                             label='Rating (1-5)'
                             keyboardType='numeric'
                         />
+                        <Text style={globalStyles.errorText}> {formikProps.touched.rating && formikProps.errors.rating} </Text>
 
                         <Button title='submit' style={{marginTop:20}} onPress={formikProps.handleSubmit} color='secondary' />
 
